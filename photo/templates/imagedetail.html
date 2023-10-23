@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h1>Image Detail</h1>
+
+{% if images_obj %}
+{% for img in images_obj.all %}
+
+<img src="{{ img }}">
+
+
+<a href="{% url 'productdetail' img.pk %}" class="btn btn-sm btn-secondary">Retour</a>
+
+{% endfor %}
+
+
+
+{% endif %}
+{% for img in productobj_set.all %}
+<img src="{{ img.images.url }}">
+
+<a href="{% url 'productdetail' img.pk %}" class="btn btn-sm btn-secondary">Retour</a>
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+

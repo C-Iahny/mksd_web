@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style type="text/css">
+    img {
+        margin-bottom: 5px;
+    }
+</style>
+
+
+<div class="container my-5">
+    <br />
+    <h2>DETAIL DE L'ALBUM</h2>
+    <a href="{% url 'index' %}" class="btn btn-sm btn-secondary">Retour</a>
+    <br />
+    <hr />
+    <br>
+    <h1>{{ productobj.title }}</h1>
+    <br>
+    {% for pimage in productobj.images_set.all %}
+
+    	<a href="{% url 'imagedetail' pimage.pk %}"><img src="{{ pimage.images.url }}" class="card-img-top" alt="banner_image" style="width: 563px; height: 400px;"></a>
+    {% empty %}
+        <p>Mbola tsy misy sary fa ampio.</p>
+        <br>
+
+    {% endfor %}
+    <br><br>
+        <a href="{% url 'index' %}" class="btn btn-sm btn-secondary">Retour</a>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
