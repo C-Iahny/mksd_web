@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<br><br><br>
+
+<style type="text/css">
+	
+.content {
+	width: 250px;
+	text-align: center;
+}
+
+
+</style>
+
+<h1>THEMA IN MKSD</h1>
+
+	<div class="content">
+		{% if cat_menu %}
+
+
+			{% for I in cat_menu %}
+
+				<div class="card">
+					{{ I }}
+				</div>
+						
+
+
+			{% endfor %}
+
+		{% endif %}
+	</div>
+
+
+{% endblock content %}

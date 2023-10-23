@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+	Edit Live Post
+{% endblock title %}
+
+{% block content %}
+
+<style type="text/css">
+
+  h1 {
+    margin-top: 55px;
+  }
+</style>
+
+
+<div class="container">
+		{% if user.is_authenticated %}
+			{% if user.id == post.author.id %}
+
+				<h1>Update Live</h1>
+
+				<div class="form-group">
+					<form method="POST">
+						{% csrf_token %}
+						{{ form.as_p}}
+
+						<button class="btn btn-secondary">Update</button>
+				</div>
+			{% else %}
+				<h4>Vous n'êtes autorisé à changer! </h4>
+			{% endif %}
+
+		{% else %}
+
+		<h3>Seules les membres du STAFF sont autorisés pour les changements.</h3>
+
+
+		{% endif %}
+
+		<br><br><br><br><br>
+</div>
+{% endblock content %}

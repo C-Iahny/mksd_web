@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Themen
+{% endblock title %}
+
+{% block content %}
+
+<style type="text/css">
+	
+.card {
+	float: left;
+	margin-right: 45px;
+	margin-top: 20px;
+	
+}
+
+
+
+</style>
+
+<br><br><br>
+
+
+<div class="container">
+	
+
+
+		<div class="card">
+			  <div class="card-header">
+			    <h1>
+			    	<small>
+						<img class="logo_mitmachen" src="{% static 'mksd/admin_images/LOGO.png' %}" width="150px">
+					</small>
+
+					THEMEN
+				</h1>
+
+			  </div>
+			  <div class="card-body">
+			    <blockquote class="blockquote mb-0">
+
+
+					{% for item in cat_menu_list %}
+						<div class="card" style="width: 18rem;">
+						  <div class="card-body">
+						    <h4><a href="{% url 'category' item|slugify %}">{{ item }}</a></h4>
+						    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="#" class="card-link">Card link</a>
+						    <a href="#" class="card-link">Another link</a>
+						  </div>
+						</div>
+					{% endfor %}
+	  
+
+			    </blockquote>
+			  </div>
+		</div>
+
+<br>
+
+
+</div>
+
+
+
+{% endblock content %}
+
+
+

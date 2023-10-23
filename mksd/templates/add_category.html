@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+Add Category
+{% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container">
+	<h1>Ajouter une catégorie</h1>
+
+	<div class="form-group" >
+		<form method="POST"enctype='multipart/form-data'>
+			{% csrf_token %}
+			{{ form.as_p}}
+
+			<button class="btn btn-secondary">Valider</button>
+	</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+
+ .container{
+  width: 100%;
+ }
+
+
+.card {
+  width: 250px;
+  text-align: center;
+  background-color: whitesmoke;
+  float: left; 
+  margin-right: 15px;
+  margin-left: 35px;
+  margin-top: 75px;
+
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darkcyan;
+}
+
+h1 {
+  margin-left: 5px;
+}
+
+img {
+  margin-top: 10px;
+}
+
+
+</style>
+<!---
+<div class="container">
+        {% for event in object_list %}
+          <div class="card" style="width: 15rem; height: 30rem;">
+            <div class="box">
+
+              {% if event.header_image %}
+                  <a href="{% url 'article-detail' event.pk %}">
+                      <img src="{{ event.header_image.url }}" class="img-fluid rounded-start" style="max-height: 290px;" alt="header_image">
+                  </a>
+              {% endif %}
+
+              <h4><a href="{% url 'article-detail' event.pk %}">{{ event.title }}</a></h4>
+                <small>
+                  <a href="{% url 'category' event.category %}">{{ event.category }}</a>
+                </small>
+              <p class="card-text">{{ event.snippets}}</p>
+
+              <small>By: {{ event.author.first_name }} {{ event.author.last_name }}</small>
+              <p class="card-text"><small class="text-muted">{{ event.event_date }}</small></p>
+            </div>
+
+            {% if user.is_authenticated %}
+                {% if user.id == event.author.id %}
+
+                   <small>
+                       <a href="{% url 'update_post' event.pk %}">(Edit)</a>
+                       <a href="{% url 'delete_post' event.pk %}">(Delete)</a>
+                   <br>
+                   </small>
+                {% endif %}
+
+           {% endif %}
+
+          </div>
+        {% endfor %}
+</div>
+<a href="{% url 'home' %}" class="btn btn-sm btn-secondary">Retou home</a>
+---->
+
+<div class="container my-5">
+    <br />
+<h1>ALLE POSTEN</h1>    <br />
+
+    <a href="{% url 'add_post' %}" class="btn btn-success btn-sm">Ajouter un Post</a>
+    <br />
+    <hr />
+
+
+    <div class="row">
+        {% for event in object_list %}
+        <div class="card m-3" style="width: 18rem;" id="img">
+            {% if event.header_image %}
+                <a href="{% url 'article-detail' event.pk %}">
+                    <img src="{{ event.header_image.url }}" class="img-fluid rounded-start" style="max-height: 290px;" alt="header_image">
+                </a>
+            {% endif %}
+            <div class="card-body">
+                <h4><a href="{% url 'article-detail' event.pk %}">{{ event.title }}</a></h4>
+                <small><strong>
+                  <a href="{% url 'category' event.category %}">{{ event.category }}</a></strong>
+                </small>
+                <p class="card-text">{{ event.snippets}}</p>
+                <p class="card-text"><small class="text-muted">{{ event.event_date }}</small></p>
+                <a href="{% url 'category' event %}" class="btn btn-primary btn-sm">Detail</a>
+
+                {% if user.is_authenticated %}
+                {% if user.id == event.author.id %}
+
+                   <small>
+                       <a href="{% url 'update_post' event.pk %}">(Edit)</a>
+                       <a href="{% url 'delete_post' event.pk %}">(Delete)</a>
+                   <br>
+                   </small>
+                {% endif %}
+
+           {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+          <p>No product yet</p>
+         {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+
+

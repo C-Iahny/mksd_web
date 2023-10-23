@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<style type="text/css">
+
+
+:root{
+	--main-radius:5px;
+	--main-padding:5px;
+}
+
+/*
+.container00 {
+	display: grid;
+	height: 100vh;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 2.2fr 2.2fr 2.2fr 2.2fr;
+	grid-template-areas: 
+		"sidebar main main main"
+		"sidebar content1 content2 content3";
+	grid-gap: 00.2rem;
+	font-family: "Inter", sans-serif;
+	font-weight: 550;
+	text-align: center;
+
+}*/
+
+main {
+
+	background: #84ffff;
+	color: #111;
+	background-size: cover;
+	grid-area: main;
+	border-radius: var(--main-radius);
+	padding-top: var(--main-padding);
+}
+
+.card {
+	border-radius: 0px 0px 5px 5px;
+}
+
+.card-img {
+	height: 461px;
+	color: #111;
+}
+
+#sidebar {
+	background: grey;
+	height: 250px;
+	grid-area: sidebar;
+	border-radius: var(--main-radius);
+	padding-top: var(--main-padding);
+}
+
+.text {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 20px auto;
+
+}
+
+img {
+	background-size: cover;
+	height: 100vh;
+	width: 100%;
+}
+
+.link {
+	color: cornsilk;
+	font-weight: 800;
+	text-shadow: red;
+  font-size: 48px;
+  border-radius: 25%;
+}
+
+#content1 {
+	/*background: darkgray;*/
+	/*background-image: url("{% static 'images/LOGO.jpeg' %}");*/
+	height: 425px;
+	background-size: cover;
+	grid-area: content1;
+	border-radius: var(--main-radius);
+	padding-top: var(--main-padding);
+}
+
+#content1 .row .col {
+		/*background-color: grey;*/
+		/*border-color: red;*/
+		padding: 15px;
+	}
+
+
+#content2 {
+	background: grey;
+	height: 350px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-image: url("{#% static 'images/sarety.png' %#}");
+	background-size: 100vh;
+	grid-area: content2;
+	border-radius: var(--main-radius);
+	padding-top: var(--main-padding);
+	color: #fff;
+}
+
+#content3 {
+	background: darkgray;
+	background-image: url("{#% static 'images/lolo.png' %#}");
+	height: 400px;
+	background-size: 100vh;
+	grid-area: content3;
+	border-radius: var(--main-radius);
+	padding-top: var(--main-padding);
+}
+
+
+@media only screen and (max-width:599px) {
+	.container00 {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1.2fr 1.2fr 1.2fr 1.2fr 1.2fr;
+		grid-template-areas:
+			"main"
+  		"sidebar"
+			"content1"
+			"content2"
+			"content3";
+
+	}
+
+	.text {
+		
+	}
+
+	img {
+		height: 100%;
+	}
+
+	#sidebar {
+		height: 695px;
+	}
+
+	#content1 {
+		flex-wrap: wrap;
+		height: 35px;
+	}
+
+	#content1 img {
+		height: 545px;
+	}
+
+
+	#content2 {
+		height: 365px;
+		margin-top: 1280px;
+	}
+
+	.container {
+		flex-wrap: wrap;
+	}
+
+
+}
+
+</style>
+
+
+<div class="container">
+
+<!----------------------- MAIN ------------------------>
+
+	<main>
+			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+			  <div class="carousel-indicators">
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			  </div>
+
+			  <div class="carousel-inner">
+			  	{% for post in post_menu %}
+			    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+			      <img src="{{ post.header_image.url }}" class="d-block w-100" style="height:550px;" alt="Slide">
+
+			      <div class="carousel-caption d-none d-md-block">
+			      	<h1 class="animate_animated
+			      		{% if forloop.counter0 == 0 %}
+			      			animate_fadeInDown
+			      		{% endif %}
+
+			      		{% if forloop.revcounter == 1 %}
+			      			animate_slideInDown
+			      		{% endif %}
+
+			      		{% if forloop.revcounter == 2 %}
+			      			animate_zoomIn
+			      		{% endif %}
+			      		">
+			      		<a class="link" href="{% url 'article-detail' post.pk %}" style="padding-bottom: 500px;">
+			      		{{ post.title }}
+			      		</a>
+			      	</h1>
+
+			      </div>
+
+
+
+			    </div>
+	
+			    {% endfor %}
+			  </div>
+
+			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
+
+	</main>
+
+
+<!-------------------- SIDEBAR ---------------------------->
+
+
+	<div class="card text-bg-dark">
+		<h4 style="text-align: center;">Madagassische Kultur und Sport in Deutschland</h4>
+	</div>
+		<br>
+		<div id="sidebar">
+			<h1 style="padding-left: 20px;"></h1>
+		<div>
+
+			<div class="text">
+				<h4>
+						Wir sind madagassische Gemeinden in Deutschland, die die Verbundenheit zwischen allen Madagassen in Deutschland sowie in Europa als oberstes Ziel haben.
+				</h4>
+				<h4>
+					IZAHAY DIA VONDROM-PIARAHAMONINA MALAGASY IZAY MIPETRAKA ETO ALEMANA, IZAY MANANA LAHARAM-PAHAMEHANA. NY FIRAISANKINA EO AMIN’NY SAMY MALAGASY REHETRA ETO ALEMANA ARY KOA ETO EROPA
+				</h4>
+			</div>
+
+		</div>
+</div>
+
+<br>
+<!----------------------- CONTENT 1 ------------------------>
+	<div id="content1">
+
+
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				
+			  <div class="col">
+			    <div class="card h-25">
+			    	<div class="card-footer">
+			        <h4 class="text-body-secondary">NEUIGKEIT</h4>
+			      </div>
+
+						{% for neu in neuigkeit %}
+			      <img style="max-height: 335px;" src="{{ neu.file.url }}" class="card-img-top" alt="...">
+			      {% empty %}
+			      	<h2>Comming soon</h2>
+			      {% endfor %}
+			    </div>
+
+			  </div>
+			  
+			  <div class="col">
+			    <div class="card h-25">
+			    	<div class="card-footer">
+			        <h4 class="text-body-secondary">MKSD LIVE</h4>
+			      </div>
+
+				{% for live in mksd_live %}
+			      <img style="max-height: 335px" src="{{ live.file.url }}" class="card-img-top" alt="...">
+			    </div>
+			  </div>
+			  {% empty %}
+			      	<h2>Comming soon</h2>
+			  {% endfor %}
+
+			  
+			  <div class="col">
+			    <div class="card h-25">
+			    	<div class="card-footer">
+			        <h4 class="text-body-secondary">MKSD 2023</h4>
+			      </div>
+				
+				{% for 000 in mksd_000 %}
+			      <img style="max-height: 335px" src="{{ 000.file.url }}" class="card-img-top" alt="...">
+			    </div>
+			  </div>
+			  {% empty %}
+			      	<h2>Comming soon</h2>
+			  {% endfor %}
+
+			</div>
+
+	</div>
+
+<br>
+<!----------------------- CONTENT 2 ------------------------>
+
+	<div id="content2">
+		<h1 style="padding-left: 20px;">Content 2</h1>
+
+		<div class="text">
+			<h4>
+				Lorem			</h4>
+			<h4>
+				Lorem ipsum
+			</h4>
+		</div>
+
+  </div>
+
+
+<br>
+<!----------------------- CONTENT 3 ------------------------>
+
+<div>
+	<div id="content3">content3
+		<h1>Mbola tsy misy zavatra ato.</h1>
+	</div>
+</div>
+
+<br>
+
+
+
+{% endblock content %}
+
+
+

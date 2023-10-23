@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ seho.title_tag }}
+{% endblock title %}
+
+
+<style type="text/css">
+	.card {
+		align-items: center;
+		background: #fff;
+		margin: 5px auto;
+		padding: 10px 	auto;
+		border-color: red;
+	}
+
+	.container{
+		max-width: 1140px;
+		background-color: #fff;
+		height: 700px;
+		margin: 20px auto;
+	}
+
+
+
+</style>
+
+
+{% block content %}
+
+<br>
+
+<div class="container">
+
+<div class="row">
+	<div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 ml-1">
+<a class="btn btn-secondary" href="{% url 'all_post' %}">Alle Posten</a>
+<a class="btn btn-secondary" href="{% url 'category-list' %}">Retour catégorie</a>
+<br><br>
+		{% if post.header_image %}
+			<img src="{{ post.header_image.url }}" width="750" max-height="850">
+		{% endif %}
+
+		<h2>{{ post.title }}</h2>
+
+		<strong>Par: 
+			{{ post.author.first_name }} 
+			{{ post.author.last_name }}
+
+			, on
+
+			{{ post.event_date }}
+		</strong>
+		
+	
+		<small>
+
+		<br><br>
+
+			{% if user.is_authenticated %}
+				{% if user.is == post.author.id %}
+					<a href="{% url 'update_post' post.pk %}"><button class="btn btn-secondary">(Edit)</button></a>
+					<a href="{% url 'delete_post' post.pk %}">(Delete)</a><br>
+					current user: {{ user.id }}
+				{% endif %}
+
+			{% endif %}
+			</small>
+
+		<hr>
+		
+		
+	</div>
+
+<!----------- Section tokony ho à droite ---------->
+
+	<div class="col-sm-8 col-md-8 col-lg-8 col-xl-8">
+		{{ post.body | safe }}
+
+		<br><br>
+
+		
+<!------ LIKE FORM ---------------------------------->
+
+	<form action="{% url 'like_post' post.pk %}" method="POST">
+		{% csrf_token %}
+
+		{% if user.is_authenticated %}
+			{% if liked %}
+			<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger">Unlike</button>
+
+			{% else %}
+			<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary">Like</button>
+			{% endif %}
+		{% else %}
+			<small><a href="{% url 'login' %}">Login</a> to like</small>
+		{% endif %}
+			 - {{ total_likes }} Likes 
+		
+	</form>
+
+
+
+
+	</div>
+
+
+
+</div>
+
+
+<br>
+
+<!-------- Profile description ----------->
+
+		<div class="card mb-3">
+		  <div class="row g-0">
+
+		    <div class="col-md-2">
+		    	{% if post.author.profile.profile_pic %}
+		    	  <img src="{{ post.author.profile.profile_pic.url }}" class="card-img" alt="Profile_pic">
+		    	{% else %}
+		    	  <img src="{% static 'images/avatar.png' %}" class="img-fluid rounded-start" alt="Profile_pic">
+		      	{% endif %}
+		    </div>
+
+		    <div class="col-md-10">
+		      <div class="card-body">
+			        <h5 class="card-title">
+			        	{{ post.author.first_name }} 
+						{{ post.author.last_name }}
+					</h5>
+							<p class="small text-muted">
+
+								<a href="{#% url 'show_profile_page' post.author.profile.id %#}">Profile </a>|
+
+								{% if post.author.profile.website_url %}
+									<a href="{{ post.author.profile.website_url }}">Website |</a>
+								{% endif %}
+
+								{% if post.author.profile.facebook_url %}
+									<a target="_blank" href="{{ post.author.profile.facebook_url }}">Facebook |</a>
+								{% endif %}
+
+								{% if post.author.profile.instagram_url %}
+									<a href="{{ post.author.profile.instagram_url }}">Instagram</a>
+								{% endif %}
+
+		        	<p class="card-text">{{ post.author.profile.biographie }}</p>
+		      </div>    
+		    </div>
+		  </div>
+		</div>
+
+		<hr>
+
+<!-------------- Comment Info ---------------->
+
+		<h2>Info</h2>
+		{#% if user.is_authenticated %#}		
+			<a href="{% url 'add_comment' post.pk %}">Ajouter un commentaire</a><br>
+			<br>
+		{#% endif %#}
+		<div class="card">
+			
+
+			{% if not post.comments.all %}
+				Pas de commentaire encore mais vous pouvez
+			{% else %}
+				{% for comment in post.comments.all %}
+					
+					<small>
+						<strong>&nbsp;&nbsp;&nbsp;<u>{{ post..first_name }}:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{ comment.date_added }})</u>
+					</small>			
+							  	
+						&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.body }}
+						<hr>
+
+				{% endfor %}
+			</div>
+
+				{#% if user.is_authenticated %#}
+				<br>
+				<a href="{% url 'add_comment' post.pk %}">Ajouter un commentaire</a>
+				<br>
+				{#% endif %#}
+
+			{% endif %}
+
+			<br>
+</div>
+
+{% endblock content %}
+
+
+
+
