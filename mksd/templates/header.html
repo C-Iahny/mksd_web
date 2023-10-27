@@ -115,23 +115,6 @@
 
      {% else %}
 
-          
-      <!--
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Register</a>
-        </li>
-      -->
-      
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Admin</a>
-        </li>
-
-      {% endif %}
-      
-
-    </ul>
-
-
             <div class="dropdown-center">
                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Kontakt
@@ -159,8 +142,23 @@
 
                   </ul>
             </div>
+          
+      <!--
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+      -->
+      
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Admin</a>
+        </li>
 
-    
+      {% endif %}
+      
+
+    </ul>
+
+
 {% if user.is_authenticated %}
   
     <ul class="navbar-nav ml-auto">
