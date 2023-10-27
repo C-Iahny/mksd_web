@@ -83,23 +83,18 @@ class PostImage(models.Model):
     def __str__(self):
         return self.post.title
 
-        
 
-class Neu(models.Model)
-	name = models.CharField(max_length=55)
-	file = models.FileField(upload_to='Neu_file/')
 
-	def __str__(self):
-		return self.nom
+
 
 class Neuigkeit(models.Model):
-	neu_name = models.ForeignKey(Neu, max_length=55, on_delete=models.CASCADE)
+	neu_name = models.CharField(max_length=125)
 	neu_body = RichTextField(blank=True, null=True)
 	neu_file = models.FileField(upload_to='Neuigkeit')
 	neu_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.name
+		return self.neu_name
 
 class MKSD_LIVE(models.Model):
 	name = models.CharField(max_length=55)
