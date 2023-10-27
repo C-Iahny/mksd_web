@@ -57,6 +57,13 @@ class About(TemplateView):
 	model = Contact
 	template_name = 'about.html'
 
+def uber_uns(request):
+	return render(request, 'uber_uns.html', {})
+
+
+def faq(request):
+	return render(request, 'faq.html', {})
+
 
 class Impressum(TemplateView):
 	model = Contact
