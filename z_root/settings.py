@@ -152,7 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'mksd_home'
 LOGOUT_REDIRECT_URL ='mksd_home'
 
-CSRF_TRUSTED_ORIGINS = ['https://*.web-production-691a.up.railway.app/','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.mksd.in','https://*.web-production-691a.up.railway.app/','https://*.127.0.0.1']
 
 # --------- EMAIL SERVER --------------------
 import smtplib
