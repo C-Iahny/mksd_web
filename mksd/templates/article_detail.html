@@ -171,7 +171,7 @@
 				{% for comment in post.comments.all %}
 					
 					<small>
-						<strong>&nbsp;&nbsp;&nbsp;<u>{{ post..first_name }}:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{ comment.date_added }})</u>
+						<strong>&nbsp;&nbsp;&nbsp;<u>{{ post.first_name }}:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{ comment.date_added }})</u>
 					</small>			
 							  	
 						&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.body }}

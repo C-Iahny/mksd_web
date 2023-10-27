@@ -24,7 +24,9 @@ img {
     <br />
 <h1>CATEGORIES</h1>    <br />
 
+    {% if user_is.authenticated %}
     <a href="{% url 'add_category' %}" class="btn btn-success btn-sm">Ajouter catégorie</a>
+    {% endif %}
     <br />
     <hr />
     <div class="row">

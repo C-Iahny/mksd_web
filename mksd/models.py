@@ -84,23 +84,32 @@ class PostImage(models.Model):
         return self.post.title
 
 
+
+
+
 class Neuigkeit(models.Model):
-	name = models.CharField(max_length=55)
-	file = models.FileField(upload_to='Neuigkeit')
+	neu_name = models.CharField(max_length=125)
+	neu_body = RichTextField(blank=True, null=True)
+	neu_file = models.FileField(upload_to='Neuigkeit')
+	neu_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.name
+		return self.neu_name
 
 class MKSD_LIVE(models.Model):
 	name = models.CharField(max_length=55)
+	body = RichTextField(blank=True, null=True)
 	file = models.FileField(upload_to='MKSD_LIVE')
+	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return self.name
 
 class MKSD_000(models.Model):
 	name = models.CharField(max_length=55)
+	body = RichTextField(blank=True, null=True)
 	file = models.FileField(upload_to='MKSD_000')
+	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return self.name

@@ -84,8 +84,10 @@ img {
 <div class="container my-5">
     <br />
 <h1>ALLE POSTEN</h1>    <br />
-
+    
+    {% if user_is.authenticated %}
     <a href="{% url 'add_post' %}" class="btn btn-success btn-sm">Ajouter un Post</a>
+    {% endif %}
     <br />
     <hr />
 

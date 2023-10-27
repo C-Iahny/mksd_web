@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ seho.title_tag }}
+{% endblock title %}
+
+
+<style type="text/css">
+	.card {
+		align-items: center;
+		background: #fff;
+		margin: 5px auto;
+		padding: 10px 	auto;
+		border-color: red;
+	}
+
+	.container{
+		max-width: 1140px;
+		background-color: #fff;
+		height: 700px;
+		margin: 20px auto;
+	}
+
+
+
+
+
+</style>
+
+
+{% block content %}
+
+
+
+<br>
+
+<div class="container">
+		<a class="btn btn-secondary" href="{% url 'all_post' %}">Alle Posten</a>
+		<a class="btn btn-secondary" href="{% url 'category-list' %}">Retour catégorie</a>
+		
+		<div class="card mb-3" style="max-width: 325rem;">
+		  <div class="row g-0">
+		    <div class="col-md-4">
+		      <img src="{{ neuigkeit.file.url }}" class="img-fluid rounded-start" alt="neuigkeit img">
+		    </div>
+		    <div class="col-md-8">
+		      <div class="card-body">
+		        <h5 class="card-title">{{ neuigkeit.name}}</h5>
+		        <p class="card-text">{{ neuigkeit.body|safe }}</p>
+		        <a class="card-text" href="#"><small class="text-body-secondary">Mehr erfahren</small></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+</div>
+
+{% endblock content %}
+
+
+
+

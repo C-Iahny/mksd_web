@@ -195,9 +195,41 @@ class AllPost(ListView):
 
 
 
+#---------------- Neuigkeiten ---------------------------------
+
+class NeuigkeitDetailView(DetailView):
+	model = Neuigkeit
+	template_name = 'neuigkeit_detail.html'
+
+	def get_context_data(self, *args, **kargs):
+		neu = Neuigkeit.objects.all()
+		context = super(NeuigkeitDetailView, self).get_context_data(*args, **kargs)
+
+
+		context["neu"] = neu
+		return context
+
+def NeuigkeitListView(request):
+	neu_menu_list = Neuigkeit.objects.all()
+	return render(request, 'neuigkeit_list.html', {'neu_menu_list':neu_menu_list})
 
 
 
+def NeuigkeitView(request, neu):
+	neuigkeit_posts = Neuigkeit.objects.filter(neuigkeit__iexact=neu)
+	return render(request, 'neuigkeit.html', {'neu': neu.title().replace('-', ' '), 'neuigkeit_posts':neuigkeit_posts})
+
+
+class AddNeuigkeitView(CreateView):
+	model = Neuigkeit
+	template_name = 'add_neuigkeit.html'
+	fields = '__all__'
+
+	def get_context_data(self, *args, **kargs):
+		neu_menu = Neuigkeit.objects.all()
+		context = super(AddNeuigkeitView, self).get_context_data(*args, **kargs)
+		context["neu_menu"] = neu_menu
+		return context
 
 
 
