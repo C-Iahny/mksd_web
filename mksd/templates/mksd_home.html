@@ -48,8 +48,8 @@ main {
 	color: #111;
 }
 
-#sidebar {
-	background: grey;
+.sidebar {
+	background-color: beige;
 	height: 250px;
 	grid-area: sidebar;
 	border-radius: var(--main-radius);
@@ -62,6 +62,8 @@ main {
 	padding-left: 20px;
 	padding-right: 20px;
 	margin: 20px auto;
+
+	font-family: "Calligraphic";
 
 }
 
@@ -79,7 +81,7 @@ img {
   border-radius: 25%;
 }
 
-#content1 {
+.content1 {
 	/*background: darkgray;*/
 	/*background-image: url("{% static 'images/LOGO.jpeg' %}");*/
 	height: 425px;
@@ -89,15 +91,19 @@ img {
 	padding-top: var(--main-padding);
 }
 
-#content1 .row .col {
+.content1 .row .col {
 		/*background-color: grey;*/
 		/*border-color: red;*/
 		padding: 15px;
 	}
 
 
-#content2 {
+.content2 {
+	margin-left: 225px;
 	background: grey;
+	align-items: center;
+	justify-content: center;
+	width: 65%;
 	height: 350px;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -109,7 +115,7 @@ img {
 	color: #fff;
 }
 
-#content3 {
+.content3 {
 	background: darkgray;
 	background-image: url("{#% static 'images/lolo.png' %#}");
 	height: 400px;
@@ -117,6 +123,12 @@ img {
 	grid-area: content3;
 	border-radius: var(--main-radius);
 	padding-top: var(--main-padding);
+}
+
+.text-content {
+	text-align: center;
+	word-spacing: px;
+	line-height: px;
 }
 
 
@@ -141,23 +153,25 @@ img {
 		height: 100%;
 	}
 
-	#sidebar {
-		height: 695px;
+	.sidebar {
+		height: 505px;
 	}
 
-	#content1 {
+	.content1 {
 		flex-wrap: wrap;
 		height: 35px;
 	}
 
-	#content1 img {
+	.content1 img {
 		height: 545px;
 	}
 
 
-	#content2 {
+	.content2 {
 		height: 365px;
+		padding-top: 13px;
 		margin-top: 1280px;
+		margin-left: 73px;
 	}
 
 	.container {
@@ -201,7 +215,7 @@ img {
 			      			animate_zoomIn
 			      		{% endif %}
 			      		">
-			      		<a class="link" href="{% url 'article-detail' post.pk %}" style="padding-bottom: 500px;">
+			      		<a class="link" href="{% url 'article-detail' post.pk %}" style="padding-bottom: 500px; color: orangered;">
 			      		{{ post.title }}
 			      		</a>
 			      	</h1>
@@ -232,10 +246,10 @@ img {
 
 
 	<div class="card text-bg-dark">
-		<h4 style="text-align: center;">Madagassische Kultur und Sport in Deutschland</h4>
+		<h4 style="text-align: center;">Madagassisches Kultur und Sporttreffen in Deutschland</h4>
 	</div>
 		<br>
-		<div id="sidebar">
+		<div class="sidebar">
 			<h1 style="padding-left: 20px;"></h1>
 		<div>
 
@@ -243,6 +257,7 @@ img {
 				<h4>
 						Wir sind madagassische Gemeinden in Deutschland, die die Verbundenheit zwischen allen Madagassen in Deutschland sowie in Europa als oberstes Ziel haben.
 				</h4>
+				<br>
 				<h4>
 					IZAHAY DIA VONDROM-PIARAHAMONINA MALAGASY IZAY MIPETRAKA ETO ALEMANA, IZAY MANANA LAHARAM-PAHAMEHANA. NY FIRAISANKINA EO AMIN’NY SAMY MALAGASY REHETRA ETO ALEMANA ARY KOA ETO EROPA
 				</h4>
@@ -253,7 +268,7 @@ img {
 
 <br>
 <!----------------------- CONTENT 1 ------------------------>
-	<div id="content1">
+	<div class="content1">
 
 
 			<div class="row row-cols-1 row-cols-md-3 g-4">
@@ -265,10 +280,12 @@ img {
 			      </div>
 
 						{% for neu in neuigkeit %}
+						<a href="{% url 'neu-detail' neu.pk %}">
 			      <img style="max-height: 335px;" src="{{ neu.file.url }}" class="card-img-top" alt="...">
 			      {% empty %}
 			      	<h2>Comming soon</h2>
 			      {% endfor %}
+			    	</a>
 			    </div>
 
 			  </div>
@@ -309,17 +326,57 @@ img {
 <br>
 <!----------------------- CONTENT 2 ------------------------>
 
-	<div id="content2">
-		<h1 style="padding-left: 20px;">Content 2</h1>
+	<div class="content2">
+			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+			  <div class="carousel-indicators">
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			  </div>
 
-		<div class="text">
-			<h4>
-				Lorem 001
-			</h4>
-			<h4>
-				Lorem 002
-			</h4>
-		</div>
+			  <div class="carousel-inner">
+			  	{% for img in cat_menu %}
+			    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+
+			      <img src="{{ img.banner.url }}" class="d-block w-100" style="height:340px;" alt="Slide">
+
+			      <div class="carousel-caption d-none d-md-block">
+			      	<h1 class="animate_animated
+			      		{% if forloop.counter0 == 0 %}
+			      			animate_fadeInDown
+			      		{% endif %}
+
+			      		{% if forloop.revcounter == 1 %}
+			      			animate_slideInDown
+			      		{% endif %}
+
+			      		{% if forloop.revcounter == 2 %}
+			      			animate_zoomIn
+			      		{% endif %}
+			      		">
+			      		<a class="link" href="{% url 'productdetail' img.pk %}" style="padding-bottom: 500px; color: orangered;">
+			      		{{ img.title }}
+			      		</a>
+			      	</h1>
+
+			      </div>
+
+
+
+			    </div>
+	
+			    {% endfor %}
+			  </div>
+
+			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
 
   </div>
 
@@ -327,10 +384,42 @@ img {
 <br>
 <!----------------------- CONTENT 3 ------------------------>
 
-<div>
-	<div id="content3">content3
-		<h1>Mbola tsy misy zavatra ato.</h1>
-	</div>
+<div class="text-content">
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><strong><i>„Izay mitambatra vato, izay misaraka fasika“</i></strong>
+        	<br><br>
+					„Wer sich zusammenhält, ist wie der Stein; wer sich trennt, ist wie der Sand“
+					<br><br>
+					<small><i>Rivo . MKSD-Vorstandsmitglieder – ohabolana Malagasy</i></small></p>
+        <a href="{% url 'uber_uns' %}" class="btn btn-secondary">Über uns</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text"><strong>
+        	Wir sind gemeinnütziger, eingetragener
+					Verein deutschen Rechts, der auf
+					der ehrenamtlichen Arbeit seiner
+					Mitglieder basiert.
+					<br>
+					Wir bieten ein Kompetenzzentrum für
+					madagassische Sprache, Sport und
+					Kultur in Deutschland und pflegt
+					Kontakte zu verschiedenen
+					Kultureinrichtungen des Freistaates
+					</strong>
+				</p>
+        <a href="{% url 'faq' %}" class="btn btn-secondary">MKSD FAQ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <br>
