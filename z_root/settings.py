@@ -138,10 +138,11 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    
+CSRF_TRUSTED_ORIGINS = ['https://*.mksd.in','https://*.web-production-691a.up.railway.app/','https://*.127.0.0.1']   
 
 ]
 # Default primary key field type
@@ -152,7 +153,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'mksd_home'
 LOGOUT_REDIRECT_URL ='mksd_home'
 
-CSRF_TRUSTED_ORIGINS = ['https://*.mksd.in','https://*.web-production-691a.up.railway.app/','https://*.127.0.0.1']
+
 
 # --------- EMAIL SERVER --------------------
 import smtplib
