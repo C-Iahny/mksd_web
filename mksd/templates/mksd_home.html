@@ -279,8 +279,10 @@ img {
 			        <h4 class="text-body-secondary">NEUIGKEIT</h4>
 			      </div>
 
-			      {% for new in neuigkeit %}
-			         <a href="{% url 'neu-detail' new.pk %}">
+
+	          {% for new in neu %}
+				      <a href="{% url 'neu-detail' new.pk %}">
+
 			      <img style="max-height: 335px;" src="{{ new.neu_file.url }}" class="card-img-top" alt="...">
 			      {% empty %}
 			      	<h2>Comming soon</h2>
