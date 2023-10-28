@@ -17,7 +17,9 @@
 <div class="container my-5">
     <br />
 <h1>TOUS LES ALBUMS</h1>    <br />
+    {% if user_is.authenticated %}
     <a href="{% url 'addproduct' %}" class="btn btn-success btn-sm">Créer Album</a>
+    {% endif %}
     <br />
     <hr />
     <div class="row">
@@ -27,7 +29,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{product.title}}</h5>
                 <a href="{% url 'productdetail' product.id %}" class="btn btn-primary btn-sm">Detail</a>
+                {% if user_is.authenticated %}
                 <a href="{% url 'addimages' product.id %}" class="btn btn-secondary btn-sm">Add images</a>
+                {% endif %}
             </div>
 
         </div>
