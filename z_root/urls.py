@@ -31,3 +31,25 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+
+
+admin.site.site_header = "Admin area"
+admin.site.site_title = "MKSD"
+#admin.site.index_title = "Admin area für MKSD"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
