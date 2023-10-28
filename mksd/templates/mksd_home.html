@@ -281,7 +281,7 @@ img {
 
 	          	     {% for new in neu %}
 				<a href="{% url 'neu-detail' new.pk %}">
-			      <img style="max-height: 335px;" src="{{ new.file.url }}" class="card-img-top" alt="...">
+			      <img style="max-height: 335px;" src="{{ new.neu_file.url }}" class="card-img-top" alt="...">
 			      {% empty %}
 			      	<h2>Comming soon</h2>
 			      {% endfor %}
