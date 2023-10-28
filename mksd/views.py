@@ -196,7 +196,7 @@ class AllPost(ListView):
 
 
 #---------------- Neuigkeiten ---------------------------------
-
+"""
 class NeuigkeitDetailView(DetailView):
 	model = Neuigkeit
 	template_name = 'neuigkeit_detail.html'
@@ -231,7 +231,7 @@ class AddNeuigkeitView(CreateView):
 		context["neu_menu"] = neu_menu
 		return context
 
-
+"""
 
 
 
