@@ -84,13 +84,19 @@ class PostImage(models.Model):
         return self.post.title
 
 
+class neu_category(models.Model):
+	name = models.CharField(max_length=155)
+	neu_image = models.ImageField(upload_to='neu_img/')
 
+	def __str__(self):
+		return self.name
 
 
 class Neuigkeit(models.Model):
 	neu_name = models.CharField(max_length=125)
 	neu_body = RichTextField(blank=True, null=True)
 	neu_file = models.FileField(upload_to='Neuigkeit')
+	neu_category = models.ForeignKey(neu_category,on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
 	neu_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
